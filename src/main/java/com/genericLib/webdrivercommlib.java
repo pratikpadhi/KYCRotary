@@ -1,5 +1,7 @@
 package com.genericLib;
 
+import static io.restassured.RestAssured.given;
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -9,6 +11,11 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
+import io.restassured.specification.RequestSpecification;
 
 public class webdrivercommlib {
 public void waitforpagetoload(){
@@ -159,6 +166,20 @@ public static WebElement getfirstselectedoptions(int a,String locator)
 {
 	Select sel=new Select(Locator_wait.GetElement(a, locator));
 	return(sel.getFirstSelectedOption());
+}
+
+public static String getotp()
+{
+	RequestSpecification req=	new RequestSpecBuilder().setBaseUri("https://api.kys-tech.com")
+			.setContentType(ContentType.JSON).build();
+RequestSpecification reqLogin =given().relaxedHTTPSValidation().log().all().spec(req).body("{\r\n" + 
+				"    \"email\": \"arnab@technoexponent.com\"\r\n" + 
+				"}");
+		String response = reqLogin.when().post("/api/fetch-user-otp").asString();
+		JsonPath js = new JsonPath(response);
+		String otp = js.getString("otp");
+		System.out.println(otp);
+		return otp;
 }
 
 }
