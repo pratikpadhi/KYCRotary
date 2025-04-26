@@ -30,7 +30,7 @@ public class Login {
 	webdrivercommlib wb=new webdrivercommlib();
 	
 	public void login(){
-		Browser.driver.get(constnts.url_b);
+		
 		username.sendKeys(constnts.username);
 		password.sendKeys(constnts.password);
 		Submit.click();

@@ -26,6 +26,7 @@ public class Home_Page {
 	webdrivercommlib wb=new webdrivercommlib();
 	
 	public void gotologinpage() {
+		Browser.driver.get(constnts.url_b);
 		cookies.click();
 		Sigin.click();
 	}
