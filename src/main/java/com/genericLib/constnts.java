@@ -1,8 +1,8 @@
 package com.genericLib;
 
 public interface constnts {
-String username_b="mercury";
-String password_b="mercury";
-String url_b="https://www.flipkart.com/";
+String username="arnabenterprise@yopmail.com";
+String password="Test@1994";
+String url_b="https://kys-tech.com/";
 String Browser="chrome";
 }

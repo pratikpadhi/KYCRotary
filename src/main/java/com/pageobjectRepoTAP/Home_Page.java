@@ -18,18 +18,16 @@ import com.sun.glass.events.KeyEvent;
 
 public class Home_Page {
 
-	@FindBy(xpath="//input[@title='Search for products, brands and more']")
-	private WebElement search;
+	@FindBy(xpath="//a[normalize-space(text())='Sign In']")
+	private WebElement Sigin;
+	@FindBy(xpath="//button[text()=' Allow cookies ']")
+	private WebElement cookies;
 
 	webdrivercommlib wb=new webdrivercommlib();
 	
-	public void search_TV(String s) throws AWTException{
-		
-		search.sendKeys(s);
-		Robot r=new Robot();
-		r.keyPress(KeyEvent.VK_ENTER);
-		r.keyRelease(KeyEvent.VK_ENTER);
-		wb.normalwait();
+	public void gotologinpage() {
+		cookies.click();
+		Sigin.click();
 	}
 	
 	}

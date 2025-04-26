@@ -33,7 +33,7 @@ import com.genericLib.log1;
 import com.genericLib.webdrivercommlib;
 import com.pageobjectRepoTAP.Home_Page;
 import com.pageobjectRepoTAP.Login;
-import com.pageobjectRepoTAP.Search_Result_Page;
+
 @Listeners(Screenshot.class)
 public class TestScript {
 	ExcelLib elib=new ExcelLib();
@@ -41,7 +41,6 @@ public class TestScript {
 	WebDriver driver;
 	Login loginpage;
 	Home_Page homepage;
-	Search_Result_Page search;
 	static String value =null;
 	
 @BeforeTest
@@ -58,26 +57,27 @@ public void extendreport()
 	
 @BeforeClass
 	public void bfrcls(){
-		driver=Browser.getbrowser();
-		driver.manage().window().maximize();
+	driver=Browser.getbrowser();
+	driver.manage().window().maximize();
 	loginpage=	PageFactory.initElements(driver,Login.class);
 	homepage=	PageFactory.initElements(driver,Home_Page.class);
-	search=	PageFactory.initElements(driver,Search_Result_Page.class);
 	
 	log1.configure();
-	 log1.info("Test Case execution for flipkart started.");
+	 log1.info("Test Case execution for KYS started.");
 	// Browser.test = Browser.report.startTest("ExtentDemo");
 
 }
 
 	@Test
-	public void TC01()
+	public void Login()
 	{
 		StackTraceElement[] stacktrace = Thread.currentThread().getStackTrace();
 	    StackTraceElement e = stacktrace[1];
 	   value = e.getMethodName();
 	   Browser.test = Browser.report.startTest(value);
-		//loginpage.login();
+	   homepage.gotologinpage();
+		loginpage.login();
+		loginpage.validateotp();
 		 log1.info(value+" test case passed successfully");
 		 Browser.test.log(LogStatus.PASS, "Navigated to the specified URL");
 

@@ -17,27 +17,28 @@ import com.genericLib.webdrivercommlib;
 
 public class Login {
 
-	@FindBy(xpath="//input[@name='userName']")
-	private WebElement usernameedt;
+	@FindBy(xpath="//input[@name='email']")
+	private WebElement username;
 	@FindBy(xpath="//input[@name='password']")
-	private WebElement passwordedt;
-	@FindBy(name="login")
-	private WebElement loginbtn;
-	@FindBy(xpath="//div/button")
-	private List<WebElement> cancel;
+	private WebElement password;
+	@FindBy(xpath="//span[text()='Please allow cookies']/parent::button")
+	private WebElement Submit;
+	@FindBy(xpath="//input[@formcontrolname='otp']")
+	private WebElement otp;
+	@FindBy(xpath="//button[@type='submit']")
+	private WebElement verify;
 	webdrivercommlib wb=new webdrivercommlib();
 	
 	public void login(){
 		Browser.driver.get(constnts.url_b);
-		usernameedt.sendKeys(constnts.username_b);
-		passwordedt.sendKeys(constnts.password_b);
-		loginbtn.click();
+		username.sendKeys(constnts.username);
+		password.sendKeys(constnts.password);
+		Submit.click();
 	}
 	
-	public void guest_login(){
-		Browser.driver.get(constnts.url_b);
-		wb.normalwait();
-		cancel.get(1).click();
+	public void validateotp(){
+		otp.sendKeys(wb.getotp());
+		verify.click();
 		
 	}
 	

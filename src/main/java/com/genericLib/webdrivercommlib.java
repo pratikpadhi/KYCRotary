@@ -173,7 +173,7 @@ public static String getotp()
 	RequestSpecification req=	new RequestSpecBuilder().setBaseUri("https://api.kys-tech.com")
 			.setContentType(ContentType.JSON).build();
 RequestSpecification reqLogin =given().relaxedHTTPSValidation().log().all().spec(req).body("{\r\n" + 
-				"    \"email\": \"arnab@technoexponent.com\"\r\n" + 
+				"    \"email\": \"arnabenterprise@yopmail.com\"\r\n" + 
 				"}");
 		String response = reqLogin.when().post("/api/fetch-user-otp").asString();
 		JsonPath js = new JsonPath(response);
