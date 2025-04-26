@@ -77,6 +77,7 @@ public void extendreport()
 	   Browser.test = Browser.report.startTest(value);
 	   homepage.gotologinpage();
 		loginpage.login();
+		
 		loginpage.validateotp();
 		
 		 log1.info(value+" test case passed successfully");
