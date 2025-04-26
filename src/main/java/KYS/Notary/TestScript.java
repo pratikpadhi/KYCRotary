@@ -78,6 +78,7 @@ public void extendreport()
 	   homepage.gotologinpage();
 		loginpage.login();
 		loginpage.validateotp();
+		
 		 log1.info(value+" test case passed successfully");
 		 Browser.test.log(LogStatus.PASS, "Navigated to the specified URL");
 
