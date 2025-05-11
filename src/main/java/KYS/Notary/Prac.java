@@ -40,13 +40,13 @@ public class Prac{
 	@FindBy(xpath="//input[@name='password']")
 	public WebElement password;
 	@FindBy(xpath="//button[text()='Sign in']")
-	public WebElement signin;
+	public WebElement signin; 
 	@FindBy(xpath="//div[@class='info']/img")
 	public WebElement clickInfo;
 	@FindBy(xpath="//a[text()='My Profile']")
 	public WebElement getMyPro;
 	@FindBy(xpath="//a[text()='Logout']")
-	public WebElement logout;
+	public WebElement logout; 
 	
 	webdrivercommlib wb=new webdrivercommlib();
 	
