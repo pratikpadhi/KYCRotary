@@ -110,6 +110,11 @@
     <artifactId>poi-ooxml</artifactId>
     <version>3.9</version>
 </dependency>
+<dependency>
+    <groupId>com.aventstack</groupId>
+    <artifactId>extentreports</artifactId>
+    <version>4.1.7</version>  <!-- Use version 4.x to get ExtentHtmlReporter -->
+</dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>

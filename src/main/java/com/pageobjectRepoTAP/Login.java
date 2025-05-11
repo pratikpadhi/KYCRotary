@@ -34,7 +34,10 @@ public class Login {
 		username.sendKeys(constnts.username);
 		password.sendKeys(constnts.password);
 		Submit.click();
+		//dipanjan k1 = new dipanjan();
+		//k1.printe();
 	}
+	
 	
 	public void validateotp(){
 		otp.sendKeys(wb.getotp());
@@ -42,6 +45,14 @@ public class Login {
 		
 	}
 	
+	/*class dipanjan {
+		public void printe() {
+		System.out.println("I am in a class");
+		}
+		public void ghosh() {
+			System.out.println("Ghosh boro subodh balok")
+		}
+	}*/
 	}
 
 	
