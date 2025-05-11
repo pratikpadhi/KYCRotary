@@ -15,6 +15,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import com.aventstack.extentreports.*;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
@@ -47,6 +49,8 @@ public class Prac{
 	public WebElement getMyPro;
 	@FindBy(xpath="//a[text()='Logout']")
 	public WebElement logout; 
+	@FindBy(xpath="//div[@class='alert alert-danger alert-block']/strong")
+	public WebElement invalidlogin; 
 	
 	webdrivercommlib wb=new webdrivercommlib();
 	
@@ -95,10 +99,14 @@ public class Prac{
 	
 	@Test(priority = 1)
 	public void LoginwithNoData() {
-		
+		StackTraceElement[] stacktrace = Thread.currentThread().getStackTrace();
+	    StackTraceElement e = stacktrace[1];
+	   value = e.getMethodName();
+		 Browser.test = Browser.report.startTest(value);
 		username.sendKeys(" ");
 		password.sendKeys(" ");
 		signin.click();	
+		Browser.test.log(LogStatus.PASS, "Navigated to the specified URL");
 	}
 	@Test(priority = 2)
 	public void LoginwithOnlyMail() {
@@ -108,11 +116,17 @@ public class Prac{
 		signin.click();	
 	}
 	@Test(priority = 3)
-	public void LoginwithWrongData() {
+	public void LoginwithWrongData() throws IOException {
+		StackTraceElement[] stacktrace = Thread.currentThread().getStackTrace();
+	    StackTraceElement e = stacktrace[1];
+	   value = e.getMethodName();
+		 Browser.test = Browser.report.startTest(value);
 		
 		username.sendKeys("ramom54@yopmail.com");
 		password.sendKeys("Test@123888");
 		signin.click();	
+		Assert.assertEquals(invalidlogin.getText(), "You have entered invalid credentials");
+		 Browser.test.log(LogStatus.PASS,Browser.test.addScreenCapture(capture(driver))+ "No Login with invalid credentials");
 	}
 	@Test(priority = 4)
 	public void Login() {
@@ -137,10 +151,24 @@ public class Prac{
 	   // wait.until(ExpectedConditions.elementToBeClickable(logout));
 	}
 	
-	/*@AfterSuite
-	public void logout() {
-		logout.click();
-	}*/
+	@AfterMethod
+    public void TearDown(ITestResult result) throws IOException
+    {
+         if(ITestResult.FAILURE == result.getStatus())
+           {
+           log1.warn(value+" test case failed.**");
+           Browser.test.log(LogStatus.FAIL,Browser.test.addScreenCapture(capture(driver))+ "Test Failed");
+
+           }
+    }
+	
+	public static String capture(WebDriver driver) throws IOException {
+		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		File Dest = new File("src/../ErrImages/" + System.currentTimeMillis()+ ".png");
+		String errflpath = Dest.getAbsolutePath();
+		FileUtils.copyFile(scrFile, Dest);
+		return errflpath;
+		}
 	
 	@AfterClass
 	public void last()
