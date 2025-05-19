@@ -63,6 +63,8 @@ public class Prac{
 	}
 	@AfterMethod
 	public void clearData() {
+		
+		if(value.equals("UpdateProfile")) {}else {
 		System.out.println("Clearing input data");
 		try {
 	        if (loginpg != null) {
@@ -71,10 +73,14 @@ public class Prac{
 	    } catch (Exception e) {
 	        System.out.println("Unable to clear fields after test. " + e.getMessage());
 	    }
+		}
 	}
 	
 	@Test(priority = 1)
 	public void LoginwithNoData1() {
+		StackTraceElement[] stacktrace = Thread.currentThread().getStackTrace();
+	    StackTraceElement e = stacktrace[1];
+	   value = e.getMethodName();
 		System.out.println("No data Execute");
 		
 		loginpg.loginwithNodata();
@@ -83,6 +89,9 @@ public class Prac{
 	
 	@Test(priority = 2)
 	public void LoginwithOnlyMail() {
+		StackTraceElement[] stacktrace = Thread.currentThread().getStackTrace();
+	    StackTraceElement e = stacktrace[1];
+	   value = e.getMethodName();
 		System.out.println("Only mail data Execute");
 
 		loginpg.LoginwithonlyEmail();
@@ -91,12 +100,18 @@ public class Prac{
 	
 	@Test(priority = 3)
 	public void LoginwithWrongData(){
+		StackTraceElement[] stacktrace = Thread.currentThread().getStackTrace();
+	    StackTraceElement e = stacktrace[1];
+	   value = e.getMethodName();
 		System.out.println("Wrong data Execute");
 		loginpg.WrongData();
 	}
 	
 	@Test(priority = 4)
 	public void Login() {
+		StackTraceElement[] stacktrace = Thread.currentThread().getStackTrace();
+	    StackTraceElement e = stacktrace[1];
+	   value = e.getMethodName();
 		System.out.println("Correct Execute");
 		loginpg.CorrectLogin();
 		
@@ -106,6 +121,9 @@ public class Prac{
 	
 	@Test(priority = 5)
 	public void UpdateProfile() {
+		StackTraceElement[] stacktrace = Thread.currentThread().getStackTrace();
+	    StackTraceElement e = stacktrace[1];
+	   value = e.getMethodName();
 		System.out.println("Executing logout");
 		//clickInfo.click();
 		
